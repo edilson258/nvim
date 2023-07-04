@@ -24,6 +24,14 @@ return require('packer').startup(function(use)
       require('onedark').load()
     end
   }
+  -- Vim Fugitive
+  use 'tpope/vim-fugitive'
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
 
   -- Auto Complete 
   use {
