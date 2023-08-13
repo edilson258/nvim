@@ -1,3 +1,5 @@
+vim.cmd('autocmd BufWritePost plugins.lua PackerCompile')
+
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -13,18 +15,7 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-
-  -- My plugins here
-  use {
-    'navarasu/onedark.nvim',
-    config = function() 
-      require('onedark').setup {
-        style = 'deep'
-      }
-      require('onedark').load()
-    end
-  }
-  -- Vim Fugitive
+  use 'Mofiqul/dracula.nvim'
   use 'tpope/vim-fugitive'
   use {
     'lewis6991/gitsigns.nvim',
@@ -32,26 +23,19 @@ return require('packer').startup(function(use)
       require('gitsigns').setup()
     end
   }
-
-  -- Auto Complete 
   use {
     'neoclide/coc.nvim', 
     { branch = 'release'}
   }
-
   use 'jiangmiao/auto-pairs'
-
-  -- Others
   use {
     'akinsho/bufferline.nvim', 
     tag = "v3.*", 
     requires = 'nvim-tree/nvim-web-devicons'
   }
-
   use {
     "nvim-treesitter/nvim-treesitter"
   }
-
   use {
     "lukas-reineke/indent-blankline.nvim",
     config = function() 
@@ -61,12 +45,10 @@ return require('packer').startup(function(use)
       }
     end
   }
-
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
@@ -74,8 +56,6 @@ return require('packer').startup(function(use)
     },
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
-
-  -- Lua
   use {
     "folke/which-key.nvim",
     config = function()
@@ -83,17 +63,14 @@ return require('packer').startup(function(use)
       vim.o.timeoutlen = 300
     end
   }
-
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-
-  use 'neovim/nvim-lspconfig'
-  use 'jose-elias-alvarez/null-ls.nvim'
   use 'MunifTanjim/prettier.nvim'
-  
-
+  use('neovim/nvim-lspconfig')
+  use('jose-elias-alvarez/null-ls.nvim')
+  use 'ray-x/go.nvim'
   if packer_bootstrap then
     require('packer').sync()
   end

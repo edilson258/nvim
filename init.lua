@@ -5,8 +5,10 @@ require("settings.lualine")
 require("settings.blankline")
 require("settings.nvimtree")
 require("settings.whichkey")
+require("settings.ts")
 
 vim.g.mapleader = " "
+vim.cmd[[colorscheme dracula]]
 
 require("bufferline").setup{
   options = {
@@ -15,3 +17,4 @@ require("bufferline").setup{
 }
 
 require("nvim-tree").setup()
+require('go').setup()
